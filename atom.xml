@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-04-08T13:23:08.000Z</updated>
+  <updated>2017-04-08T13:25:26.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>swift\_style\_guide</title>
+    <title>swift style guide</title>
     <link href="http://yoursite.com/2017/04/08/2017-04-08-swift-style-guide/"/>
     <id>http://yoursite.com/2017/04/08/2017-04-08-swift-style-guide/</id>
     <published>2017-04-08T13:10:37.000Z</published>
-    <updated>2017-04-08T13:23:08.000Z</updated>
+    <updated>2017-04-08T13:25:26.000Z</updated>
     
     <content type="html"><![CDATA[<p>Make sure to read <a href="https://swift.org/documentation/api-design-guidelines/" target="_blank" rel="external">Apple’s API Design Guidelines</a>.</p>
 <p>Specifics from these guidelines + additional remarks are mentioned below.</p>
