@@ -107,16 +107,19 @@
 
 
 
-<meta name="description" content="BackgroundObjective-C is a very dynamic, object-oriented extension of C. It’s designed to be easy to use and read, while enabling sophisticated object-oriented design. It is the primary development la">
+<meta name="description" content="**This is Google Objective-C Style Guide.
+BackgroundObjective-C is a very dynamic, object-oriented extension of C. It’s designed to be easy to use and read, while enabling sophisticated object-oriente">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Google Objective-C Style Guide">
 <meta property="og:url" content="http://yoursite.com/2017/04/08/2017-04-08-Google-Objective-C-Style-Guide/index.html">
 <meta property="og:site_name" content="Guangfeng's Blog">
-<meta property="og:description" content="BackgroundObjective-C is a very dynamic, object-oriented extension of C. It’s designed to be easy to use and read, while enabling sophisticated object-oriented design. It is the primary development la">
-<meta property="og:updated_time" content="2017-04-08T15:18:04.000Z">
+<meta property="og:description" content="**This is Google Objective-C Style Guide.
+BackgroundObjective-C is a very dynamic, object-oriented extension of C. It’s designed to be easy to use and read, while enabling sophisticated object-oriente">
+<meta property="og:updated_time" content="2017-04-08T15:21:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Google Objective-C Style Guide">
-<meta name="twitter:description" content="BackgroundObjective-C is a very dynamic, object-oriented extension of C. It’s designed to be easy to use and read, while enabling sophisticated object-oriented design. It is the primary development la">
+<meta name="twitter:description" content="**This is Google Objective-C Style Guide.
+BackgroundObjective-C is a very dynamic, object-oriented extension of C. It’s designed to be easy to use and read, while enabling sophisticated object-oriente">
 
 
 
@@ -390,15 +393,18 @@
       
 
       
-        <h2 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h2><p>Objective-C is a very dynamic, object-oriented extension of C. It’s designed to be easy to use and read, while enabling sophisticated object-oriented design. It is the primary development language for new applications on Mac OS X and the iPhone.<br>Cocoa is one of the main application frameworks on Mac OS X. It is a collection of Objective-C classes that provide for rapid development of full-featured Mac OS X applications.<br>Apple has already written a very good, and widely accepted, coding guide for Objective-C. Google has also written a similar guide for C++. This Objective-C guide aims to be a very natural combination of Apple’s and Google’s general recommendations. So, before reading this guide, please make sure you’ve read:</p>
+        <p>**This is <a href="https://google.github.io/styleguide/objcguide.xml" target="_blank" rel="external">Google Objective-C Style Guide</a>.</p>
+<h2 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h2><p>Objective-C is a very dynamic, object-oriented extension of C. It’s designed to be easy to use and read, while enabling sophisticated object-oriented design. It is the primary development language for new applications on Mac OS X and the iPhone.<br>Cocoa is one of the main application frameworks on Mac OS X. It is a collection of Objective-C classes that provide for rapid development of full-featured Mac OS X applications.<br>Apple has already written a very good, and widely accepted, coding guide for Objective-C. Google has also written a similar guide for C++. This Objective-C guide aims to be a very natural combination of Apple’s and Google’s general recommendations. So, before reading this guide, please make sure you’ve read:</p>
 <ul>
 <li><a href="https://developer.apple.com/documentation/Cocoa/Conceptual/CodingGuidelines/index.html" target="_blank" rel="external">Apple’s Cocoa Coding Guidelines</a></li>
-<li><p><a href="https://google-styleguide.googlecode.com/svn/trunk/cppguide.xml" target="_blank" rel="external">Google’s Open Source C ++ Style Guide</a><br>The purpose of this document is to describe the Objective-C (and Objective-C++) coding guidelines and practices that should be used for all Mac OS X code. Many of these guidelines have evolved and been proven over time on other projects and teams. Open-source projects developed by Google conform to the requirements in this guide.<br>Note that this guide is not an Objective-C tutorial. We assume that the reader is familiar with the language. If you are new to Objective-C or need a refresher, please read <a href="https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Introduction/Introduction.html" title="Programming with Objective-C" target="_blank" rel="external">Programming with Objective-C </a> .</p>
-<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><p>They say an example is worth a thousand words so let’s start off with an example that should give you a feel for the style, spacing, naming, etc.<br>An example header file, demonstrating the correct commenting and spacing for an <code>@interface</code> declaration</p>
-<p>  #import “Foo.h”</p>
-</li>
+<li><a href="https://google-styleguide.googlecode.com/svn/trunk/cppguide.xml" target="_blank" rel="external">Google’s Open Source C ++ Style Guide</a></li>
 </ul>
-<pre><code>@implementation Foo {
+<p>The purpose of this document is to describe the Objective-C (and Objective-C++) coding guidelines and practices that should be used for all Mac OS X code. Many of these guidelines have evolved and been proven over time on other projects and teams. Open-source projects developed by Google conform to the requirements in this guide.<br>Note that this guide is not an Objective-C tutorial. We assume that the reader is familiar with the language. If you are new to Objective-C or need a refresher, please read <a href="https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Introduction/Introduction.html" title="Programming with Objective-C" target="_blank" rel="external">Programming with Objective-C </a> .</p>
+<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><p>They say an example is worth a thousand words so let’s start off with an example that should give you a feel for the style, spacing, naming, etc.<br>An example header file, demonstrating the correct commenting and spacing for an <code>@interface</code> declaration</p>
+<pre><code>#import &quot;Foo.h&quot;
+
+
+@implementation Foo {
   NSString *_bar;
   NSString *_foo;
 }
