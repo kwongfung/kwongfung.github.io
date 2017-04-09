@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-04-09T10:43:53.000Z</updated>
+  <updated>2017-04-09T10:45:37.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/04/09/2017-04-09-Android-Project-and-Code-Guidelines/"/>
     <id>http://yoursite.com/2017/04/09/2017-04-09-Android-Project-and-Code-Guidelines/</id>
     <published>2017-04-09T10:01:26.000Z</published>
-    <updated>2017-04-09T10:43:53.000Z</updated>
+    <updated>2017-04-09T10:45:37.000Z</updated>
     
     <content type="html"><![CDATA[<p>This is <a href="https://github.com/ribot/android-guidelines" target="_blank" rel="external">Architecture and code guidelines</a> we use at ribot when developing for Android <a href="http://ribot.co.uk/" target="_blank" rel="external">http://ribot.co.uk/</a>.</p>
 <h1 id="Project-guidelines"><a href="#Project-guidelines" class="headerlink" title="Project guidelines"></a>Project guidelines</h1><h2 id="Project-structure"><a href="#Project-structure" class="headerlink" title="Project structure"></a>Project structure</h2><p>New projects should follow the Android Gradle project structure that is defined on the <a href="http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Project-Structure" target="_blank" rel="external">Android Gradle plugin user guide</a>. The <a href="https://github.com/ribot/android-boilerplate" target="_blank" rel="external">ribot Boilerplate</a> project is a good reference to start from.</p>
@@ -407,13 +407,14 @@
 <li>Style</li>
 <li>Layout width and layout height</li>
 <li>Other layout attributes, sorted alphabetically</li>
-<li>Remaining attributes, sorted alphabetically<h2 id="Tests-style-rules"><a href="#Tests-style-rules" class="headerlink" title="Tests style rules"></a>Tests style rules</h2><h3 id="Unit-tests"><a href="#Unit-tests" class="headerlink" title="Unit tests"></a>Unit tests</h3>Test classes should match the name of the class the tests are targeting, followed by <code>Test</code>. For example, if we create a test class that contains tests for the <code>DatabaseHelper</code>, we should name it <code>DatabaseHelperTest</code>.<br>Test methods are annotated with <code>@Test</code> and should generally start with the name of the method that is being tested, followed by a precondition and/or expected behaviour.</li>
+<li>Remaining attributes, sorted alphabetically</li>
 </ol>
+<h2 id="Tests-style-rules"><a href="#Tests-style-rules" class="headerlink" title="Tests style rules"></a>Tests style rules</h2><h3 id="Unit-tests"><a href="#Unit-tests" class="headerlink" title="Unit tests"></a>Unit tests</h3><p>Test classes should match the name of the class the tests are targeting, followed by <code>Test</code>. For example, if we create a test class that contains tests for the <code>DatabaseHelper</code>, we should name it <code>DatabaseHelperTest</code>.<br>Test methods are annotated with <code>@Test</code> and should generally start with the name of the method that is being tested, followed by a precondition and/or expected behaviour.</p>
 <ul>
 <li>Template: <code>@Test void methodNamePreconditionExpectedBehaviour()</code></li>
-<li>Example: <code>@Test void signInWithEmptyEmailFails()</code><br>Precondition and/or expected behaviour may not always be required if the test is clear enough without them.<br>Sometimes a class may contain a large amount of methods, that at the same time require several tests for each method. In this case, it’s recommendable to split up the test class into multiple ones. For example, if the <code>DataManager</code> contains a lot of methods we may want to divide it into <code>DataManagerSignInTest</code>, <code>DataManagerLoadUsersTest</code>, etc. Generally you will be able to see what tests belong together because they have common <a href="https://en.wikipedia.org/wiki/Test_fixture" target="_blank" rel="external">test fixtures</a>.<h3 id="Espresso-tests"><a href="#Espresso-tests" class="headerlink" title="Espresso tests"></a>Espresso tests</h3>Every Espresso test class usually targets an Activity, therefore the name should match the name of the targeted Activity followed by <code>Test</code>, e.g. <code>SignInActivityTest</code><br>When using the Espresso API it is a common practice to place chained methods in new lines.<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">onView(withId(R.id.view))</div><div class="line">		.perform(scrollTo())</div><div class="line">		.check(matches(isDisplayed()))</div></pre></td></tr></table></figure>
-</li>
+<li>Example: <code>@Test void signInWithEmptyEmailFails()</code><br>Precondition and/or expected behaviour may not always be required if the test is clear enough without them.<br>Sometimes a class may contain a large amount of methods, that at the same time require several tests for each method. In this case, it’s recommendable to split up the test class into multiple ones. For example, if the <code>DataManager</code> contains a lot of methods we may want to divide it into <code>DataManagerSignInTest</code>, <code>DataManagerLoadUsersTest</code>, etc. Generally you will be able to see what tests belong together because they have common <a href="https://en.wikipedia.org/wiki/Test_fixture" target="_blank" rel="external">test fixtures</a>.</li>
 </ul>
+<h3 id="Espresso-tests"><a href="#Espresso-tests" class="headerlink" title="Espresso tests"></a>Espresso tests</h3><p>Every Espresso test class usually targets an Activity, therefore the name should match the name of the targeted Activity followed by <code>Test</code>, e.g. <code>SignInActivityTest</code><br>When using the Espresso API it is a common practice to place chained methods in new lines.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">onView(withId(R.id.view))</div><div class="line">		.perform(scrollTo())</div><div class="line">		.check(matches(isDisplayed()))</div></pre></td></tr></table></figure></p>
 ]]></content>
     
     <summary type="html">
