@@ -117,7 +117,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2017/11/07/2017-11-07-AFNetworking学习总结/AFNetworkingArchitecture.png">
 <meta property="og:image" content="http://yoursite.com/2017/11/07/2017-11-07-AFNetworking学习总结/AFURLRequestSerialization.png">
-<meta property="og:updated_time" content="2017-11-22T09:52:12.143Z">
+<meta property="og:updated_time" content="2017-11-22T10:02:45.606Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AFNetworking学习总结">
 <meta name="twitter:description" content="用了这么长时间，从来没有系统详细的研究过。今天研究一下 简介 AFNetworking is a delightful networking library for iOS and Mac OS X. It’s built on top of the Foundation URL Loading System, extending the powerful high-level networkin">
@@ -407,31 +407,10 @@
  <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">SCNetworkReachabilityContext</span> context = &#123;<span class="number">0</span>, (__bridge <span class="keyword">void</span> *)callback, AFNetworkReachabilityRetainCallback, AFNetworkReachabilityReleaseCallback, <span class="literal">NULL</span>&#125;;</div><div class="line"><span class="built_in">SCNetworkReachabilitySetCallback</span>(<span class="keyword">self</span>.networkReachability, AFNetworkReachabilityCallback, &amp;context);</div><div class="line"><span class="built_in">SCNetworkReachabilityScheduleWithRunLoop</span>(<span class="keyword">self</span>.networkReachability, <span class="built_in">CFRunLoopGetMain</span>(), kCFRunLoopCommonModes);</div></pre></td></tr></table></figure>
 </li>
 <li><p>同步方式，调用<code>SCNetworkReachabilityGetFlags</code>获取网络状态，并执行回调和发送通知消息。</p>
-<pre><code>__weak __typeof(self)weakSelf = self;
-AFNetworkReachabilityStatusBlock callback = ^(AFNetworkReachabilityStatus status) {
-    __strong __typeof(weakSelf)strongSelf = weakSelf;
-
-    strongSelf.networkReachabilityStatus = status;
-    if (strongSelf.networkReachabilityStatusBlock) {
-        strongSelf.networkReachabilityStatusBlock(status);
-    }
-
-};
-
-SCNetworkReachabilityContext context = {0, (__bridge void *)callback, AFNetworkReachabilityRetainCallback, AFNetworkReachabilityReleaseCallback, NULL};
-SCNetworkReachabilitySetCallback(self.networkReachability, AFNetworkReachabilityCallback, &amp;context);
-SCNetworkReachabilityScheduleWithRunLoop(self.networkReachability, CFRunLoopGetMain(), kCFRunLoopCommonModes);
-
-dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),^{
-    SCNetworkReachabilityFlags flags;
-    if (SCNetworkReachabilityGetFlags(self.networkReachability, &amp;flags)) {
-        AFPostReachabilityStatusChange(flags, callback);
-    }
-});
-</code></pre><p>注：与此类似，iOS Library 的Sample Code中包含<code>Reachability</code>的代码，是对<code>SCNetworkReachability</code>的封装，比较简洁，可以直接用在项目中。它把网络状况类型缩小到了以下几种：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">typedef</span> <span class="keyword">enum</span> : <span class="built_in">NSInteger</span> &#123;</div><div class="line">    NotReachable = <span class="number">0</span>,</div><div class="line">    ReachableViaWiFi,</div><div class="line">    ReachableViaWWAN</div><div class="line">&#125; NetworkStatus;</div></pre></td></tr></table></figure>
+ <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">__<span class="keyword">weak</span> __<span class="keyword">typeof</span>(<span class="keyword">self</span>)weakSelf = <span class="keyword">self</span>;</div><div class="line">    AFNetworkReachabilityStatusBlock callback = ^(AFNetworkReachabilityStatus status) &#123;</div><div class="line">        __<span class="keyword">strong</span> __<span class="keyword">typeof</span>(weakSelf)strongSelf = weakSelf;</div><div class="line"></div><div class="line">        strongSelf.networkReachabilityStatus = status;</div><div class="line">        <span class="keyword">if</span> (strongSelf.networkReachabilityStatusBlock) &#123;</div><div class="line">            strongSelf.networkReachabilityStatusBlock(status);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="built_in">SCNetworkReachabilityContext</span> context = &#123;<span class="number">0</span>, (__bridge <span class="keyword">void</span> *)callback, AFNetworkReachabilityRetainCallback, AFNetworkReachabilityReleaseCallback, <span class="literal">NULL</span>&#125;;</div><div class="line">    <span class="built_in">SCNetworkReachabilitySetCallback</span>(<span class="keyword">self</span>.networkReachability, AFNetworkReachabilityCallback, &amp;context);</div><div class="line">    <span class="built_in">SCNetworkReachabilityScheduleWithRunLoop</span>(<span class="keyword">self</span>.networkReachability, <span class="built_in">CFRunLoopGetMain</span>(), kCFRunLoopCommonModes);</div><div class="line"></div><div class="line">    <span class="built_in">dispatch_async</span>(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, <span class="number">0</span>),^&#123;</div><div class="line">        <span class="built_in">SCNetworkReachabilityFlags</span> flags;</div><div class="line">        <span class="keyword">if</span> (<span class="built_in">SCNetworkReachabilityGetFlags</span>(<span class="keyword">self</span>.networkReachability, &amp;flags)) &#123;</div><div class="line">            AFPostReachabilityStatusChange(flags, callback);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div></pre></td></tr></table></figure>
 </li>
 </ol>
+<p>注：与此类似，iOS Library 的Sample Code中包含<code>Reachability</code>的代码，是对<code>SCNetworkReachability</code>的封装，比较简洁，可以直接用在项目中。它把网络状况类型缩小到了以下几种：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">typedef</span> <span class="keyword">enum</span> : <span class="built_in">NSInteger</span> &#123;</div><div class="line">    NotReachable = <span class="number">0</span>,</div><div class="line">    ReachableViaWiFi,</div><div class="line">    ReachableViaWWAN</div><div class="line">&#125; NetworkStatus;</div></pre></td></tr></table></figure></p>
 <h1 id="Security"><a href="#Security" class="headerlink" title="Security"></a>Security</h1><p><code>AFSecurityPolicy</code>分三种验证模式：</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="built_in">NS_ENUM</span>(<span class="built_in">NSUInteger</span>, AFSSLPinningMode) &#123;</div><div class="line">    AFSSLPinningModeNone,</div><div class="line">    AFSSLPinningModePublicKey,</div><div class="line">    AFSSLPinningModeCertificate,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <ul>
